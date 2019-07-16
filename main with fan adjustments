@@ -32,26 +32,21 @@ while True:
                                deg_decmin_to_dec_deg(gps.lon),
                                pm.pm_10,
                                pm.pm_25), file=csv_file)
-    
     # flush makes the data go to the file immediately, rather than buffered in memory (which might mean it gets lost if the power is pulled suddenly)
     csv_file.flush()
     # pause for a second
     time.sleep(50)
-    
-    # start the FAN please (on the so the air quality starts sucking air in)
+# start the FAN please (on the so the air quality starts sucking air in)
     pm.enable_sensor=True
     pm.enable_power=True
     time.sleep(10)
-    
-    # turn the FAN off
+# turn the FAN off
     pm.enable_sensor=False
     pm.enable_power=False
-    
     # turn off the light to show we've finished the read
     triot.leds.clear()
-    
     # pause for a bit before going round the loop again
-    time.sleep(50)
+    time.sleep(1)
 
 # just in case we leave the loop, display a red light
 triot.leds[1] = Colour('red')
